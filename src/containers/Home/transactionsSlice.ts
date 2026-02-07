@@ -51,7 +51,7 @@ const transactionsSlice = createSlice({
         builder.addCase(fetchAddTransaction.pending, (state) => {
             state.addLoading = true;
         });
-        builder.addCase(fetchAddTransaction.fulfilled, (state, action) => {
+        builder.addCase(fetchAddTransaction.fulfilled, (state) => {
             state.addLoading = false;
         });
         builder.addCase(fetchAddTransaction.rejected, (state) => {

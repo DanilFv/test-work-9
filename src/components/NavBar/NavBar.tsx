@@ -7,8 +7,13 @@ import {
     Typography
 } from '@mui/material';
 import {NavLink} from 'react-router-dom';
+import * as React from 'react';
 
-const NavBar = () => {
+interface Props {
+    onOpen?: () => void;
+}
+
+const NavBar: React.FC<Props> = ({onOpen}) => {
 
     return (
         <Box sx={{ flexGrow: 1, mb: 5 }}>
@@ -37,8 +42,9 @@ const NavBar = () => {
                             sx={{ mx: 'auto', color: 'white' }}
                             variant="outlined"
                             type="button"
+                            onClick={onOpen}
                          >
-                            Orders
+                            Add
                          </Button>
                 </Toolbar>
                 </Container>

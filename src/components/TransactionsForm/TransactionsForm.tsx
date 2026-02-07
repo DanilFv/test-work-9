@@ -27,6 +27,7 @@ const TransactionsForm: React.FC<Props> = ({categories, initialValues, isEdit, i
     }, [reset, initialValues, isEdit]);
 
      const currentType = watch('type');
+     const currentCategory = watch('category');
 
     return (
         <Box>
@@ -42,9 +43,15 @@ const TransactionsForm: React.FC<Props> = ({categories, initialValues, isEdit, i
                             disabled={isLoading}
                             error={!!errors.type}
                             helperText={errors.type?.message}
+                            value={currentType || ''}
                         >
                             {CATEGORIES_TYPE.map(category => (
-                                <MenuItem key={category} value={category}>{category}</MenuItem>
+                                <MenuItem
+                                    key={category}
+                                    value={category}
+                                >
+                                    {category}
+                                </MenuItem>
                             ))}
                         </TextField>
                     </Grid>
@@ -59,6 +66,7 @@ const TransactionsForm: React.FC<Props> = ({categories, initialValues, isEdit, i
                         disabled={isLoading}
                         error={!!errors.category}
                         helperText={errors.category?.message}
+                        value={currentCategory || ''}
                         >
                         {categories.filter(cat => cat.type === currentType).map(cat => (
                             <MenuItem key={cat.id} value={cat.id}>
