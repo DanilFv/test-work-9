@@ -1,4 +1,4 @@
-import type {ICategoryMutation} from './types';
+import type {ICategoryMutation, ITransactionMutation} from './types';
 
 export const MODAL_STYLES = {
   position: 'absolute',
@@ -18,4 +18,10 @@ export const CATEGORIES_TYPE: string[] = ['income', 'expense'];
 export const DEFAULT_VALUES: ICategoryMutation = {
     name: '',
     type: 'expense',
+};
+
+export const DEFAULT_TRANSACTION_VALUES: ITransactionMutation = {
+  type: '',
+  category: '',
+  amount: 0
 };
