@@ -15,8 +15,8 @@ interface Props {
 }
 
 
-const Form: React.FC<Props> = ({isEdit, initialValue, onSubmit, isLoading}) => {
-    const {register, handleSubmit, reset, formState: {errors}} = useForm<ICategoryMutation>({
+const CategoryForm: React.FC<Props> = ({isEdit, initialValue, onSubmit, isLoading}) => {
+    const {register, handleSubmit, reset, watch, formState: {errors}} = useForm<ICategoryMutation>({
         defaultValues: DEFAULT_VALUES,
     });
 
@@ -36,9 +36,17 @@ const Form: React.FC<Props> = ({isEdit, initialValue, onSubmit, isLoading}) => {
                 <Grid container spacing={3}>
                     <Grid size={12}>
                         <TextField
-                            {...register('name', { required: 'Название обязательно' })}
+                            {...register('name', {
+                                required: 'Название обязательно',
+                                minLength: {
+                                    value: 3,
+                                    message: 'Должно быть минимум 3 символа'
+                                },
+                                setValueAs: (value: string)=> value.trim() ?? ''
+                            })}
                             label="Name"
                             fullWidth
+                            disabled={isLoading}
                             error={!!errors.name}
                             helperText={errors.name?.message}
                         />
@@ -50,7 +58,10 @@ const Form: React.FC<Props> = ({isEdit, initialValue, onSubmit, isLoading}) => {
                             select
                             label="Type"
                             fullWidth
-                            defaultValue=""
+                            disabled={isLoading}
+                            error={!!errors.type}
+                            helperText={errors.type?.message}
+                            value={watch('type') || ''}
                         >
                             {CATEGORIES_TYPE.map((option) => (
                                 <MenuItem key={option} value={option}>
@@ -78,4 +89,4 @@ const Form: React.FC<Props> = ({isEdit, initialValue, onSubmit, isLoading}) => {
     );
 };
 
-export default Form;
+export default CategoryForm;

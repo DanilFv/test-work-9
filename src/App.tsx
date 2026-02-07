@@ -15,6 +15,8 @@ const App = () => {
             <Routes>
                 <Route path="/" element={(<Home />)} />
                 <Route path="/categories" element={(<CategoriesPage />)} />
+
+
                 <Route path='*' element={(<Typography component='p' variant='h4' sx={{textAlign: 'center', mt: 3, fontWeight: 'medium'}}>Not found page!</Typography>)} />
             </Routes>
         </Container>
